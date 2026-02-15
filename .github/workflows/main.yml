@@ -26,4 +26,4 @@ jobs:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          surge ./ web-ci-surge.surge.sh
+          surge ./ WebPageRTElectiva2.surge.sh
