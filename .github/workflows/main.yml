@@ -1,0 +1,9 @@
+on: push a main
+jobs:
+  deploy:
+    runner linux
+    steps:
+      - checkout repo
+      - instalar node
+      - instalar surge
+      - ejecutar surge deploy con secrets
