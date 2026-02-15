@@ -1,9 +1,29 @@
-on: push a main
+name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   deploy:
-    runner linux
+    runs-on: ubuntu-latest
+
     steps:
-      - checkout repo
-      - instalar node
-      - instalar surge
-      - ejecutar surge deploy con secrets
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Surge
+        run: npm install -g surge
+
+      - name: Deploy to Surge
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          surge ./ web-ci-surge.surge.sh
